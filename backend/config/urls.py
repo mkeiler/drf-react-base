@@ -22,7 +22,10 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 
     # Authentication endpoints
-    path("api/auth/", include('dj_rest_auth.urls')),
-    path("api/auth/registration/", include('dj_rest_auth.registration.urls')),
+    # path("api/auth/", include('dj_rest_auth.urls')),
+    # path("api/auth/registration/", include('dj_rest_auth.registration.urls')),
     path("api/auth/", include('accounts.urls')),
+
+    # Project management endpoints
+    path("api/", include('projects.urls')),
 ]

@@ -1,0 +1,83 @@
+@import '../styles/common.css';
+
+.comments-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.comments-section h3 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.comments-list {
+  margin-bottom: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.comment {
+  padding: 0.75rem;
+  background-color: var(--background);
+  border-radius: 0.375rem;
+  margin-bottom: 0.5rem;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.comment-header strong {
+  font-size: 0.875rem;
+}
+
+.comment-date {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.comment-text {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.add-comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.add-comment-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  resize: vertical;
+}
+
+.task-details {
+  margin-bottom: 1.5rem;
+}
+
+.detail-row {
+  margin-bottom: 1rem;
+}
+
+.detail-row strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.detail-row p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.edit-form {
+  margin-bottom: 1.5rem;
+}

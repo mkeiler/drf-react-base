@@ -1,0 +1,49 @@
+@import '../styles/common.css';
+
+.project-board-page {
+  min-height: 100vh;
+  background-color: var(--background);
+}
+
+.board-header {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left, .header-right {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.sprint-selector {
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+}
+
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1.5rem;
+  min-height: calc(100vh - 80px);
+  overflow-x: auto;
+}
+
+@media (max-width: 1200px) {
+  .kanban-board {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .kanban-board {
+    grid-template-columns: 1fr;
+  }
+}
