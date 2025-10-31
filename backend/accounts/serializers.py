@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-# from dj_rest_auth.registration.serializers import RegisterSerializer as BaseRegisterSerializer
+from dj_rest_auth.registration.serializers import RegisterSerializer as BaseRegisterSerializer
 from google.oauth2 import id_token
 from google.auth.transport import requests
 from django.conf import settings
@@ -17,16 +17,16 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_fields = ('id',)
 
 
-# class RegisterSerializer(BaseRegisterSerializer):
-#     """Custom register serializer"""
-#     first_name = serializers.CharField(required=False, allow_blank=True)
-#     last_name = serializers.CharField(required=False, allow_blank=True)
+class RegisterSerializer(BaseRegisterSerializer):
+    """Custom register serializer"""
+    first_name = serializers.CharField(required=False, allow_blank=True)
+    last_name = serializers.CharField(required=False, allow_blank=True)
 
-#     def get_cleaned_data(self):
-#         data = super().get_cleaned_data()
-#         data['first_name'] = self.validated_data.get('first_name', '')
-#         data['last_name'] = self.validated_data.get('last_name', '')
-#         return data
+    def get_cleaned_data(self):
+        data = super().get_cleaned_data()
+        data['first_name'] = self.validated_data.get('first_name', '')
+        data['last_name'] = self.validated_data.get('last_name', '')
+        return data
 
 
 class GoogleAuthSerializer(serializers.Serializer):

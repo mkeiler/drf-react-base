@@ -55,8 +55,8 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.google",
 
     # dj-rest-auth
-    # "dj_rest_auth",
-    # "dj_rest_auth.registration",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
 
     # Local apps
     "accounts",
@@ -219,14 +219,14 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 # dj-rest-auth Configuration
-# REST_AUTH = {
-#     'USE_JWT': True,
-#     'JWT_AUTH_COOKIE': 'auth-token',
-#     'JWT_AUTH_REFRESH_COOKIE': 'refresh-token',
-#     'JWT_AUTH_HTTPONLY': False,  # Set to True in production with proper HTTPS
-#     'USER_DETAILS_SERIALIZER': 'accounts.serializers.UserSerializer',
-#     'REGISTER_SERIALIZER': 'accounts.serializers.RegisterSerializer',
-# }
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'auth-token',
+    'JWT_AUTH_REFRESH_COOKIE': 'refresh-token',
+    'JWT_AUTH_HTTPONLY': False,  # Set to True in production with proper HTTPS
+    'USER_DETAILS_SERIALIZER': 'accounts.serializers.UserSerializer',
+    'REGISTER_SERIALIZER': 'accounts.serializers.RegisterSerializer',
+}
 
 # Authentication Backends
 AUTHENTICATION_BACKENDS = [
