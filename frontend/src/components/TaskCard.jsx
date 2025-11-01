@@ -24,6 +24,10 @@ const TaskCard = ({ task, isDragging, onClick }) => {
   };
 
   const handleClick = (e) => {
+    // Prevent click if clicking on drag handle
+    if (e.target.closest('.drag-handle')) {
+      return;
+    }
     if (onClick && !isDragging) {
       onClick(task);
     }
@@ -34,11 +38,13 @@ const TaskCard = ({ task, isDragging, onClick }) => {
       ref={setNodeRef}
       style={style}
       {...attributes}
-      {...listeners}
       className={`task-card ${isDragging ? 'dragging' : ''}`}
       onClick={handleClick}
     >
       <div className="task-header">
+        <div className="drag-handle" {...listeners} title="Drag to move">
+          ⋮⋮
+        </div>
         <h4 className="task-title">{task.title}</h4>
         <span
           className="priority-badge"
