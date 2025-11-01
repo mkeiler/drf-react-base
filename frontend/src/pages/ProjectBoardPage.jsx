@@ -34,10 +34,10 @@ const ProjectBoardPage = () => {
   }, [projectId]);
 
   useEffect(() => {
-    if (selectedSprint !== null) {
+    if (project) {
       fetchTasks();
     }
-  }, [selectedSprint]);
+  }, [selectedSprint, project]);
 
   const fetchProjectData = async () => {
     try {
