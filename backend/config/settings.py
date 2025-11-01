@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "rest_framework_simplejwt",
     "corsheaders",
+    "django_filters",
 
     # Django AllAuth
     "allauth",
@@ -59,6 +60,7 @@ INSTALLED_APPS = [
 
     # Local apps
     "accounts",
+    "projects",
 ]
 
 SITE_ID = 1
