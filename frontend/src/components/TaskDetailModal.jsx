@@ -23,19 +23,36 @@ const TaskDetailModal = ({ task, sprints = [], onClose, onUpdate }) => {
 
   const handleSave = async () => {
     try {
-      await tasksAPI.update(task.id, {
+      // Prepare data with proper types
+      const updateData = {
         title: taskData.title,
         description: taskData.description,
         status: taskData.status,
         priority: taskData.priority,
-        story_points: taskData.story_points || null,
-        sprint: taskData.sprint || null,
-      });
+        project: task.project, // Include project ID
+      };
+
+      // Handle story_points - convert to integer or null
+      if (taskData.story_points && taskData.story_points !== '') {
+        updateData.story_points = parseInt(taskData.story_points, 10);
+      } else {
+        updateData.story_points = null;
+      }
+
+      // Handle sprint - ensure it's a valid UUID string or null
+      if (taskData.sprint && taskData.sprint !== '') {
+        updateData.sprint = taskData.sprint;
+      } else {
+        updateData.sprint = null;
+      }
+
+      await tasksAPI.update(task.id, updateData);
       setIsEditing(false);
       onUpdate();
     } catch (error) {
       console.error('Failed to update task:', error);
-      alert('Failed to update task');
+      console.error('Error details:', error.response?.data);
+      alert('Failed to update task: ' + (error.response?.data?.detail || error.message));
     }
   };
 
