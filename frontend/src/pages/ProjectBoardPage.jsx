@@ -204,6 +204,7 @@ const ProjectBoardPage = () => {
       {selectedTask && (
         <TaskDetailModal
           task={selectedTask}
+          sprints={sprints}
           onClose={() => setSelectedTask(null)}
           onUpdate={fetchTasks}
         />

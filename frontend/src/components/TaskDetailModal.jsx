@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { tasksAPI, commentsAPI } from '../services/projectsAPI';
 import './Modal.css';
 
-const TaskDetailModal = ({ task, onClose, onUpdate }) => {
+const TaskDetailModal = ({ task, sprints = [], onClose, onUpdate }) => {
   const [taskData, setTaskData] = useState(task);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
@@ -29,6 +29,7 @@ const TaskDetailModal = ({ task, onClose, onUpdate }) => {
         status: taskData.status,
         priority: taskData.priority,
         story_points: taskData.story_points || null,
+        sprint: taskData.sprint || null,
       });
       setIsEditing(false);
       onUpdate();
@@ -132,6 +133,21 @@ const TaskDetailModal = ({ task, onClose, onUpdate }) => {
                   />
                 </div>
               </div>
+
+              <div className="form-group">
+                <label>Sprint</label>
+                <select
+                  value={taskData.sprint || ''}
+                  onChange={(e) => setTaskData({ ...taskData, sprint: e.target.value || null })}
+                >
+                  <option value="">No Sprint (Backlog)</option>
+                  {sprints.map(sprint => (
+                    <option key={sprint.id} value={sprint.id}>
+                      {sprint.name} ({sprint.status})
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           ) : (
             <div className="task-details">
@@ -146,6 +162,12 @@ const TaskDetailModal = ({ task, onClose, onUpdate }) => {
                   <strong>Story Points:</strong> {taskData.story_points}
                 </div>
               )}
+              <div className="detail-row">
+                <strong>Sprint:</strong> {taskData.sprint ?
+                  sprints.find(s => s.id === taskData.sprint)?.name || 'Unknown Sprint' :
+                  'No Sprint (Backlog)'
+                }
+              </div>
               {taskData.description && (
                 <div className="detail-row">
                   <strong>Description:</strong>
