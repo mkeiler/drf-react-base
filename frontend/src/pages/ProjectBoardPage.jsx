@@ -85,10 +85,29 @@ const ProjectBoardPage = () => {
     if (!over) return;
 
     const taskId = active.id;
-    const newStatus = over.id;
     const task = tasks.find(t => t.id === taskId);
 
-    if (task && task.status !== newStatus) {
+    if (!task) return;
+
+    // Determine the new status
+    // over.id could be a column id (status) or a task id (if dropped on a task)
+    let newStatus = over.id;
+
+    // Check if over.id is a valid status
+    const validStatuses = STATUSES.map(s => s.id);
+    if (!validStatuses.includes(over.id)) {
+      // It's a task id, find which column that task is in
+      const overTask = tasks.find(t => t.id === over.id);
+      if (overTask) {
+        newStatus = overTask.status;
+      } else {
+        // Can't determine status, abort
+        return;
+      }
+    }
+
+    // Only update if status actually changed
+    if (task.status !== newStatus) {
       // Optimistic update
       setTasks(tasks.map(t =>
         t.id === taskId ? { ...t, status: newStatus } : t
